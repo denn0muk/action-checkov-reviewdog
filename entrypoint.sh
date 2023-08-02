@@ -9,6 +9,11 @@ echo "checkov -d $INPUT_WORKING_DIRECTORY --download-external-modules false $SKI
 
 checkov -d $INPUT_WORKING_DIRECTORY --download-external-modules false $SKIP_CHECK_FLAG -o json > /tmp/tmp
 
+echo "=========================================="
+ls -ltrh /tmp/tmp
+cat /tmp/tmp
+echo "=========================================="
+
 
 cat /tmp/tmp \
     | python3 /parse.py \
