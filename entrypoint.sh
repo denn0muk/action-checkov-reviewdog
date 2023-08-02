@@ -5,17 +5,17 @@
 export REVIEWDOG_GITHUB_API_TOKEN="${INPUT_GITHUB_TOKEN}"
 
 
-echo "checkov -d $INPUT_WORKING_DIRECTORY --download-external-modules false $SKIP_CHECK_FLAG -o json > /tmp/tmp"
+# echo "checkov -d $INPUT_WORKING_DIRECTORY --download-external-modules false $SKIP_CHECK_FLAG -o json > /tmp/tmp"
 
 checkov -d $INPUT_WORKING_DIRECTORY --download-external-modules false $SKIP_CHECK_FLAG -o json > /tmp/tmp
 
-echo "=========================================="
-ls -ltrh /tmp/tmp
-cat /tmp/tmp
-echo "=========================================="
-cat /tmp/tmp \
-    | python3 /parse.py
-echo "=========================================="
+# echo "=========================================="
+# ls -ltrh /tmp/tmp
+# cat /tmp/tmp
+# echo "=========================================="
+# cat /tmp/tmp \
+#     | python3 /parse.py
+# echo "=========================================="
 
 
 
