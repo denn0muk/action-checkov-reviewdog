@@ -2,7 +2,10 @@ import json, sys
 
 def main():
     data = json.load(sys.stdin)
-    failed_checks = data["results"].get("failed_checks")
+    if isinstance(data, list):
+        failed_checks = data[0]["results"].get("failed_checks")
+    elif isinstance(data, dict):
+        failed_checks = data["results"].get("failed_checks")
     if failed_checks is None:
         exit(0)
 
