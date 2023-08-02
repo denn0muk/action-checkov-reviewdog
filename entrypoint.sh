@@ -4,7 +4,7 @@
 
 export REVIEWDOG_GITHUB_API_TOKEN="${INPUT_GITHUB_TOKEN}"
 
-checkov -d $INPUT_WORKING_DIRECTORY $SKIP_CHECK_FLAG -o json > /tmp/tmp
+checkov --download-external-modules=false -d $INPUT_WORKING_DIRECTORY $SKIP_CHECK_FLAG -o json > /tmp/tmp
 
 cat /tmp/tmp \
     | python3 /parse.py \
