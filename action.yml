@@ -30,7 +30,7 @@ inputs:
     required: false
   download_external_modules:
     description: 'Enables checkov to download any external modules used in the terraform configuration'
-    default: 'False'
+    default: 'false'
 
 branding:
   icon: 'shield'
