@@ -31,6 +31,8 @@ inputs:
   download_external_modules:
     description: 'Enables checkov to download any external modules used in the terraform configuration'
     default: 'false'
+  baseline:
+    description: 'Scan only reports failed checks that are new with respect to the provided baseline'
 
 branding:
   icon: 'shield'
@@ -46,3 +48,4 @@ runs:
     INPUT_WORKING_DIRECTORY: ${{ inputs.working_directory }}
     INPUT_SKIP_CHECK: ${{ inputs.skip_check }}
     INPUT_DOWNLOAD_EXTERNAL_MODULES: ${{ inputs.download_external_modules }}
+    INPUT_BASELINE: ${{ inputs.baseline }}
