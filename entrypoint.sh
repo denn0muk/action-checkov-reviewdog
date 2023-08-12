@@ -17,7 +17,10 @@ export REVIEWDOG_GITHUB_API_TOKEN="${INPUT_GITHUB_TOKEN}"
 #     | python3 /parse.py
 # echo "=========================================="
 
-
+checkov -d $INPUT_WORKING_DIRECTORY --baseline $BASELINE --download-external-modules $INPUT_DOWNLOAD_EXTERNAL_MODULES --quiet $SKIP_CHECK_FLAG -o json \
+# echo "=========================================="
+ls -ltrh /tmp/tmp
+cat /tmp/tmp
 
 # cat /tmp/tmp \
 checkov -d $INPUT_WORKING_DIRECTORY --baseline $BASELINE --download-external-modules $INPUT_DOWNLOAD_EXTERNAL_MODULES --quiet $SKIP_CHECK_FLAG -o json \
