@@ -1,6 +1,7 @@
 #!/bin/bash
 
 [[ ! -z "$INPUT_SKIP_CHECK" ]] && SKIP_CHECK_FLAG="--skip-check $INPUT_SKIP_CHECK"
+[[ ! -z "$INPUT_BASELINE" ]] && CHECK_BASELINE="--baseline $INPUT_BASELINE"
 
 export REVIEWDOG_GITHUB_API_TOKEN="${INPUT_GITHUB_TOKEN}"
 
@@ -17,13 +18,13 @@ export REVIEWDOG_GITHUB_API_TOKEN="${INPUT_GITHUB_TOKEN}"
 #     | python3 /parse.py
 # echo "=========================================="
 
-checkov -d $INPUT_WORKING_DIRECTORY --baseline $INPUT_BASELINE --download-external-modules $INPUT_DOWNLOAD_EXTERNAL_MODULES --quiet $SKIP_CHECK_FLAG -o json \
+checkov -d $INPUT_WORKING_DIRECTORY $CHECK_BASELINE --download-external-modules $INPUT_DOWNLOAD_EXTERNAL_MODULES --quiet $SKIP_CHECK_FLAG -o json \
 # echo "=========================================="
 ls -ltrh /tmp/tmp
 cat /tmp/tmp
 
 # cat /tmp/tmp \
-checkov -d $INPUT_WORKING_DIRECTORY --baseline $INPUT_BASELINE --download-external-modules $INPUT_DOWNLOAD_EXTERNAL_MODULES --quiet $SKIP_CHECK_FLAG -o json \
+checkov -d $INPUT_WORKING_DIRECTORY $CHECK_BASELINE --download-external-modules $INPUT_DOWNLOAD_EXTERNAL_MODULES --quiet $SKIP_CHECK_FLAG -o json \
     | python3 /parse.py \
     | reviewdog -efm="%f:%l: %m" -name="checkov" -reporter="${INPUT_REPORTER}" -fail-on-error="${INPUT_FAIL_ON_ERROR}" -filter-mode="${INPUT_FILTER_MODE}"
 
