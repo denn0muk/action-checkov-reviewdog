@@ -25,7 +25,7 @@ ls -ltrh /tmp/output_file
 cat /tmp/output_file
 
 # checkov -d $INPUT_WORKING_DIRECTORY $CHECK_BASELINE --download-external-modules $INPUT_DOWNLOAD_EXTERNAL_MODULES --quiet $SKIP_CHECK_FLAG -o json \
-cat /tmp/output_file \   
+cat /tmp/output_file \
     | python3 /parse.py \
     | reviewdog -efm="%f:%l: %m" -name="checkov" -reporter="${INPUT_REPORTER}" -fail-on-error="${INPUT_FAIL_ON_ERROR}" -filter-mode="${INPUT_FILTER_MODE}"
 
