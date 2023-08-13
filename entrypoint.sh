@@ -18,13 +18,14 @@ export REVIEWDOG_GITHUB_API_TOKEN="${INPUT_GITHUB_TOKEN}"
 #     | python3 /parse.py
 # echo "=========================================="
 
-checkov -d $INPUT_WORKING_DIRECTORY $CHECK_BASELINE --download-external-modules $INPUT_DOWNLOAD_EXTERNAL_MODULES --quiet $SKIP_CHECK_FLAG -o json > /tmp/tmp
+touch output_file
+checkov -d $INPUT_WORKING_DIRECTORY $CHECK_BASELINE --download-external-modules $INPUT_DOWNLOAD_EXTERNAL_MODULES --quiet $SKIP_CHECK_FLAG -o json > output_file
 # echo "=========================================="
-ls -ltrh /tmp/tmp
-cat /tmp/tmp
+ls -ltrh output_file
+cat output_file
 
-# cat /tmp/tmp \
-checkov -d $INPUT_WORKING_DIRECTORY $CHECK_BASELINE --download-external-modules $INPUT_DOWNLOAD_EXTERNAL_MODULES --quiet $SKIP_CHECK_FLAG -o json \
+cat output_file \
+# checkov -d $INPUT_WORKING_DIRECTORY $CHECK_BASELINE --download-external-modules $INPUT_DOWNLOAD_EXTERNAL_MODULES --quiet $SKIP_CHECK_FLAG -o json \
     | python3 /parse.py \
     | reviewdog -efm="%f:%l: %m" -name="checkov" -reporter="${INPUT_REPORTER}" -fail-on-error="${INPUT_FAIL_ON_ERROR}" -filter-mode="${INPUT_FILTER_MODE}"
 
