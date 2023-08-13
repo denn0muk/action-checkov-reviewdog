@@ -33,6 +33,7 @@ inputs:
     default: 'false'
   baseline:
     description: 'Scan only reports failed checks that are new with respect to the provided baseline'
+    default: ''
 
 branding:
   icon: 'shield'
