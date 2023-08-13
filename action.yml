@@ -34,6 +34,7 @@ inputs:
   baseline:
     description: 'Scan only reports failed checks that are new with respect to the provided baseline'
     required: 'false'
+    defaut: ''
 
 branding:
   icon: 'shield'
