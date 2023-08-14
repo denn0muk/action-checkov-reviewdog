@@ -7,7 +7,7 @@ def main():
     if isinstance(data, list) and 'failed_checks' in data[0]["results"]:
         failed_checks = data[0]["results"].get("failed_checks")
     elif isinstance(data, dict):
-        if data["results"]["failed_checks"] in data:
+        if 'results' in data:
             failed_checks = data["results"].get("failed_checks")
         else:
             exit(0)
