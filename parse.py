@@ -1,11 +1,16 @@
 import json, sys
+from os import isatty
 
 def main():
+
     data = json.load(sys.stdin)
-    if isinstance(data, list):
+    if isinstance(data, list) and 'failed_checks' in data[0]["results"]:
         failed_checks = data[0]["results"].get("failed_checks")
     elif isinstance(data, dict):
-        failed_checks = data["results"].get("failed_checks")
+        if data["results"]["failed_checks"] in data:
+            failed_checks = data["results"].get("failed_checks")
+        else:
+            exit(0)
     if failed_checks is None:
         exit(0)
 
